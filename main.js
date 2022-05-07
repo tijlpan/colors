@@ -10,7 +10,7 @@ function render() {
       (color) => {
         console.log(color.id);
         return `<li><div class="square" style="background-color: ${color.code}"></div>
-        <p class="colorName" style="color: ${color.code}">${color.name}</p>
+        <p class="colorName" style="color: ${color.code}" contentEditable>${color.name}</p>
         <input type="color" class="picker" value="${color.code}" data-id="${color.id}"/></li>`
       })
     .join("");
