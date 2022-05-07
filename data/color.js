@@ -3,14 +3,14 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = [
   {
     id: nanoid(4),
-    name: "gras afrijden",
-    code: "",
+    name: "blue",
+    code: "#0000ff",
     checked: false,
   },
   {
     id: nanoid(4),
-    name: "tv kijken",
-    code: "",
+    name: "rood",
+    code: "#ff0000",
     checked: true,
   },
 ];
@@ -32,6 +32,10 @@ const colorSlice = createSlice({
         state.findIndex((color) => color.id === payload),
         1
       );
+    },
+    setColor(state = initialState, { payload: { code, id } }) {
+      const obj = state.find((color) => color.id === id);
+      obj.code = code;
     },
   },
 });

@@ -6,3 +6,14 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.square {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+li {
+  display: flex;
+  gap: 10px;
+}

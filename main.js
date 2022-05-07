@@ -6,20 +6,35 @@ import Square from "./components/Square.js";
 function render() {
   document.querySelector("#ul").innerHTML = store
     .getState()
-    .colorState.map((color) => (
-      `<div class="square"></div><p class="colorName">${color.name}</p>`,
-      new Square(color.code)
-      ))
+    .colorState.map(
+      (color) =>
+        `<li><div class="square" style="background-color: ${color.code}"></div>
+        <p class="colorName" style="color: ${color.code}">${color.name}</p>
+        <input type="color" class="picker" value="${color.code}" data-id="${color.id}"/></li>`
+    )
     .join("");
 }
 
 render();
 
-store.subscribe(render);
+document.querySelector("ul").addEventListener("change", (e) => {
+  if (e.target.classList.contains("picker")) {
+    store.dispatch(
+      setColor({ code: e.target.dataset.id, id: e.target.value })
+    );
+  }
+});
 
 const form = document.querySelector("form");
 form.onsubmit = function (e) {
   e.preventDefault();
-  store.dispatch(addColor(form.elements["name"].value, form.elements["code"].value));
+  store.dispatch(
+    addColor({
+      name: form.elements["name"].value,
+      code: form.elements["code"].value,
+    })
+  );
   form.reset();
 };
+
+store.subscribe(render);
