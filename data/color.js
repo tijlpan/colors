@@ -34,6 +34,7 @@ const colorSlice = createSlice({
       );
     },
     setColor(state = initialState, { payload: { code, id } }) {
+      console.log(id);
       const obj = state.find((color) => color.id === id);
       obj.code = code;
     },
@@ -41,4 +42,4 @@ const colorSlice = createSlice({
 });
 
 export default colorSlice;
-export const { addColor, removeColor} = colorSlice.actions;
+export const { addColor, setColor, removeColor} = colorSlice.actions;
